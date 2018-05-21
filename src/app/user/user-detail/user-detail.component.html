@@ -1,4 +1,5 @@
 <form class="container" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <p *ngIf="message">{{message}}</p>
   <div class="form-group">
     <label for="firstName">First Name</label>
     <input class="form-control" name="firstName" type="text" formControlName="firstName">
@@ -14,8 +15,8 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="lastName">Email</label>
-    <input class="form-control" name="lastName" type="email" formControlName="email"> 
+    <label for="email">Email</label>
+    <input class="form-control" name="email" type="email" formControlName="email"> 
     <div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)">
       <p *ngIf="email.errors.required">Email is required</p>
       <p *ngIf="email.errors.email">Email is invalid</p>
@@ -42,5 +43,5 @@
     </div>
   </div>
   <input type="hidden" name="id" formControlName="id">
-  <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+  <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
 </form>

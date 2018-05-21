@@ -22,7 +22,7 @@ function setUser(state, action): IAppState {
     });
 }
 
-export default function userReducer(state: IAppState = initialState, action) {
+export default function userReducer(state: IAppState = initialState, action): IAppState {
   switch (action.type) {
     case ADD_USER:
       return addUser(state, action);
