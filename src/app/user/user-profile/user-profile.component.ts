@@ -25,15 +25,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   setUserData() {
-    console.log(store.getState().user);
-    this.user = store.getState().user;
-    // const u: IUser = this._stateService.currentUser;
-    // this.user.id = u.id;
-    // this.user.firstName = u.firstName;
-    // this.user.lastName = u.lastName;
-    // this.user.email = u.email;
-    // this.user.login = u.login;
-    // this.user.password = u.password;
+    this.user = store.getState().user.user;
   }
 
   onSubmit(f) {

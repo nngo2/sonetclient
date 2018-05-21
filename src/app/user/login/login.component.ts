@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
+  message: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,8 +24,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.message = '';
+    this.userActions.resetUserAction();
     this.authService.logout();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = '/profile';
   }
 
   login() {
@@ -32,12 +36,18 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
+          this.message = '';
           this.loading = false;
           this.userActions.setUserAction(data.user);
-          this.stateService.currentUser = data.user;
           this.router.navigate([this.returnUrl]);
         },
         error => {
+          if (error.statusText) {
+            this.message = error.statusText;
+          } else {
+            this.message = error;
+          }
+
           this.loading = false;
         }
       );
