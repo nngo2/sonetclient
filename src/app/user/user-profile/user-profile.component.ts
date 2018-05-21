@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, StateService } from '../../services';
 import { Observable } from 'rxjs/internal/Observable';
-import { IAppState, IUser, store } from '../../store';
+import { IAppState, IUser, store, UserActions } from '../../store';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,6 +9,7 @@ import { IAppState, IUser, store } from '../../store';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  message: string;
   user: IUser = {
     id: '',
     firstName: '',
@@ -18,9 +19,10 @@ export class UserProfileComponent implements OnInit {
     email: ''
   };
 
-  constructor(private _userService: UserService, private _stateService: StateService) { }
+  constructor(private userService: UserService, private userActions: UserActions) { }
 
   ngOnInit() {
+    this.message = '';
     this.setUserData();
   }
 
@@ -31,10 +33,17 @@ export class UserProfileComponent implements OnInit {
   onSubmit(f) {
     if (f.valid) {
       console.dir(f.value);
-      // this._userService.createUser(f.value).subscribe(
-      //   data => console.dir(data),
-      //   err => Observable.throw(err)
-      // );
+      this.userService.updateUser(f.value).subscribe(
+        data => {
+          console.dir(data);
+          this.message = 'Profile has been updated';
+          this.userActions.setUserAction(data.json());
+        },
+        err => {
+          this.message = err;
+          Observable.throw(err);
+        }
+      );
     }
   }
 

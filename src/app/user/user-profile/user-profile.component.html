@@ -1,4 +1,5 @@
 <form class="container" (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <p *ngIf="message">{{message}}</p>
   <div class="form-group">
     <label for="firstName">First Name</label>
     <input class="form-control" name="firstName" type="text" [(ngModel)]="user.firstName" #firstName="ngModel" required>

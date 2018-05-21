@@ -37,4 +37,8 @@ export class UserService {
     return this.httpClient.post(`${apiRoot}/api/users`, JSON.stringify(user));
   }
 
+  updateUser(user) {
+    return this.httpClient.put(`${apiRoot}/api/users`, JSON.stringify(user));
+  }
+
 }
