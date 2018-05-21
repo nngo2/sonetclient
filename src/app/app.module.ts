@@ -21,6 +21,7 @@ import { PrivateChatComponent } from './chat/private-chat/private-chat.component
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     AuthModule,
