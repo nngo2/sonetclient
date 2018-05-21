@@ -1,0 +1,9 @@
+<form class="container" (ngSubmit)="f.form.valid && send(f)" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="content">Message</label>
+      <textarea class="form-control" name="content" [(ngModel)]="content" #contentRef="ngModel" required></textarea>
+    </div>
+    <div class="form-group">
+      <button [disabled]="f.form.invalid" class="btn btn-primary">Send</button>
+    </div>
+</form>

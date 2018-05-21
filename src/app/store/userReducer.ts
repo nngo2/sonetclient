@@ -1,5 +1,12 @@
 import { IAppState, initialState } from './state';
-import { ADD_USER, SET_USER, RESET_USER } from './userActions';
+import { ADD_USER, SET_USER, RESET_USER, LOG_IN } from './userActions';
+
+function login(state, action): IAppState {
+  return Object.assign({}, state,
+    {
+      login: action.data
+    });
+}
 
 function addUser(state, action): IAppState {
   return Object.assign({}, state,
@@ -38,6 +45,8 @@ function resetUser(state, action): IAppState {
 
 export default function userReducer(state: IAppState = initialState, action): IAppState {
   switch (action.type) {
+    case LOG_IN:
+      return login(state, action);
     case ADD_USER:
       return addUser(state, action);
     case SET_USER:

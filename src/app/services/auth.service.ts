@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { tokenNotExpired } from 'angular2-jwt';
 import { apiRoot } from './common';
+import { IUser } from '../store';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -11,6 +12,14 @@ const httpOptions = {
 @Injectable()
 export class AuthService {
   constructor(private http: HttpClient) { }
+
+  getCurrentUser(): IUser {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.user) {
+      return currentUser.user;
+    }
+    return null;
+  }
 
   getToken(): string {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));

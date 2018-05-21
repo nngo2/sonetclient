@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from './state';
-
+export const LOG_IN = 'LOG_IN';
 export const ADD_USER = 'ADD_USER';
 export const SET_USER = 'SET_USER';
 export const RESET_USER = 'RESET_USER';
@@ -10,6 +10,13 @@ export const RESET_USER = 'RESET_USER';
 export class UserActions {
 
     constructor(private ngRedux: NgRedux<IAppState>) { }
+
+    loginUserAction(val) {
+        this.ngRedux.dispatch({
+            type: LOG_IN,
+            data: val
+        });
+    }
 
     addUserAction(user) {
         this.ngRedux.dispatch({

@@ -2,6 +2,7 @@ import { IUser } from './user';
 
 export interface IAppState {
     user: IUser;
+    login: boolean;
 }
 
 export const emptyUser: IUser = {
@@ -14,5 +15,6 @@ export const emptyUser: IUser = {
 };
 
 export const initialState: IAppState = {
-    user: emptyUser
+    user: emptyUser,
+    login: false
 };
