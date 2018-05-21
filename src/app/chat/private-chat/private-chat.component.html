@@ -1,0 +1,14 @@
+<p>
+  private-chat works!
+</p>
+<div>
+  <ul>
+    <li *ngFor="let m of messages"> {{m}}</li>
+  </ul>
+  <form #f="ngForm" (ngSubmit)="sendMessage()">
+
+    <textarea name="enteredMessage" [(ngModel)] ="enteredMessage"  #message="ngModel"  cols="30" rows="7" placeholder="Your message here">
+    </textarea>
+    <button type="submit">Send message</button>
+  </form>
+</div>

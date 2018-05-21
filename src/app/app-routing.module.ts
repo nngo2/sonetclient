@@ -6,6 +6,7 @@ import { LoginComponent } from './user/login/login.component';
 import { AuthGuard } from './services/index';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { PostHomeComponent } from './post/post-home/post-home.component';
+import {PrivateChatComponent} from './chat/private-chat/private-chat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'home', component: PostHomeComponent, canActivate: [AuthGuard] },
   { path: 'register', component: UserDetailComponent },
   { path: 'login', component: LoginComponent },
+  {path: 'chat', component: PrivateChatComponent},
   { path: '**', component: LoginComponent, pathMatch: 'full' }
 ];
 

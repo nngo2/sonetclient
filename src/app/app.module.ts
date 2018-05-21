@@ -12,10 +12,12 @@ import { store, IAppState } from './store/index';
 import { UserModule } from './user/user.module';
 import { AppComponent } from './app.component';
 import { PostModule } from './post/post.module';
+import { PrivateChatComponent } from './chat/private-chat/private-chat.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PrivateChatComponent
   ],
   imports: [
     BrowserModule,
