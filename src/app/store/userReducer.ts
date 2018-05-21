@@ -1,12 +1,5 @@
 import { IAppState, initialState } from './state';
-import { UserActions, LIST_USER, ADD_USER, SET_USER } from './userActions';
-
-function listUsers(state, action): IAppState {
-  return Object.assign({}, state,
-    {
-      users: action.data
-    });
-}
+import { ADD_USER, SET_USER } from './userActions';
 
 function addUser(state, action): IAppState {
   return Object.assign({}, state,
@@ -19,7 +12,7 @@ function setUser(state, action): IAppState {
   return Object.assign({}, state,
     {
       user: {
-        id: action.data.id,
+        id: action.data._id,
         firstName: action.data.firstName,
         lastName: action.data.lastName,
         login: action.data.login,
@@ -29,10 +22,8 @@ function setUser(state, action): IAppState {
     });
 }
 
-export function UserReducer(state: IAppState = initialState, action) {
+export default function userReducer(state: IAppState = initialState, action) {
   switch (action.type) {
-    case LIST_USER:
-      return listUsers(state, action);
     case ADD_USER:
       return addUser(state, action);
     case SET_USER:

@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/index';
 
 @Component({
   selector: 'app-user-detail',
@@ -53,7 +53,7 @@ export class UserDetailComponent implements OnInit {
     return new Promise(resolve => {
       this._userService.findByEmail(control.value).subscribe(
         data => {
-          if (data) {
+          if (data.json()) {
             resolve({ uniqueEmail: true });
           } else {
             resolve(null);
@@ -70,7 +70,7 @@ export class UserDetailComponent implements OnInit {
     return new Promise<any>(resolve => {
         this._userService.findByLogin(control.value).subscribe(
           data => {
-            if (data) {
+            if (data.json()) {
               resolve({ uniqueLogin: true });
             } else {
               resolve(null);

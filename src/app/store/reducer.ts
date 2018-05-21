@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-import { IAppState } from './state';
-import { UserReducer } from './userReducer';
+import userReducer from './userReducer';
 
-export default combineReducers({
-  UserReducer
+const rootReducer = combineReducers({
+  user: userReducer
 });
+
+export default rootReducer;

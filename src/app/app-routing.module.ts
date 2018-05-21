@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { LoginComponent } from './user/login/login.component';
+import { AuthGuard } from './services/index';
 
 const routes: Routes = [
   { path: '', redirectTo: 'profile', pathMatch: 'full' },
-  { path: 'profile', component: UserDetailComponent },
-  { path: '**', component: UserDetailComponent }
+  { path: 'profile', component: UserDetailComponent, canActivate: [AuthGuard] },
+  { path: 'register', component: UserDetailComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '**', component: LoginComponent, pathMatch: 'full' }
 ];
 
 /**
