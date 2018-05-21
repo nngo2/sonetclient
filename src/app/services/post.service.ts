@@ -13,4 +13,8 @@ export class PostService {
     return this.httpClient.post(`${apiRoot}/api/posts`, JSON.stringify(content));
   }
 
+  getRecentPosts(page) {
+    return this.httpClient.get(`${apiRoot}/api/posts/recent/${page}`);
+  }
+
 }
