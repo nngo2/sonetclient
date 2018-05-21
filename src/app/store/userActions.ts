@@ -4,6 +4,7 @@ import { IAppState } from './state';
 
 export const ADD_USER = 'ADD_USER';
 export const SET_USER = 'SET_USER';
+export const RESET_USER = 'RESET_USER';
 
 @Injectable()
 export class UserActions {
@@ -21,6 +22,12 @@ export class UserActions {
         this.ngRedux.dispatch({
             type: SET_USER,
             data: user
+        });
+    }
+
+    resetUserAction() {
+        this.ngRedux.dispatch({
+            type: RESET_USER
         });
     }
 }
