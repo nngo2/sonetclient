@@ -4,12 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { LoginComponent } from './user/login/login.component';
 import { AuthGuard } from './services/index';
+import {PrivateChatComponent} from './chat/private-chat/private-chat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'profile', pathMatch: 'full' },
   { path: 'profile', component: UserDetailComponent, canActivate: [AuthGuard] },
   { path: 'register', component: UserDetailComponent },
   { path: 'login', component: LoginComponent },
+  {path: 'chat', component: PrivateChatComponent},
   { path: '**', component: LoginComponent, pathMatch: 'full' }
 ];
 

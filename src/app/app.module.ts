@@ -11,15 +11,16 @@ import { UserActions } from './store/index';
 import { store, IAppState } from './store/index';
 import { UserModule } from './user/user.module';
 import { AppComponent } from './app.component';
+import { PrivateChatComponent } from './chat/private-chat/private-chat.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PrivateChatComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     AuthModule,
