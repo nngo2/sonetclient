@@ -27,8 +27,9 @@ export class LoginComponent implements OnInit {
     this.message = '';
     this.userActions.resetUserAction();
     this.authService.logout();
+    this.userActions.loginUserAction(false);
     // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.returnUrl = '/profile';
+    this.returnUrl = '/home';
   }
 
   login() {
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
         data => {
           this.message = '';
           this.loading = false;
+          this.userActions.loginUserAction(true);
           this.userActions.setUserAction(data.user);
           this.router.navigate([this.returnUrl]);
         },

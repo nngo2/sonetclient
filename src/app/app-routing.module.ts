@@ -5,11 +5,13 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { LoginComponent } from './user/login/login.component';
 import { AuthGuard } from './services/index';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { PostHomeComponent } from './post/post-home/post-home.component';
 import {PrivateChatComponent} from './chat/private-chat/private-chat.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'register', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: PostHomeComponent, canActivate: [AuthGuard] },
   { path: 'register', component: UserDetailComponent },
   { path: 'login', component: LoginComponent },
   {path: 'chat', component: PrivateChatComponent, canActivate: [AuthGuard]},
