@@ -1,8 +1,10 @@
 <div class="card">
-    <div class="card-header">
-      {{fullName}} | {{postTime}}
-    </div>
-    <div class="card-body">
-      <p class="card-text">{{postContent}}</p>
-    </div>
+  <div class="card-header">
+    {{fullName}} | {{postTime}}
   </div>
+  <div class="card-body">
+    <p class="card-text">{{postContent}}</p>
+    <app-add-comment [postId]="postId"></app-add-comment>
+    <app-comment-list [comments]="(comments$ | async)"></app-comment-list>
+  </div>
+</div>

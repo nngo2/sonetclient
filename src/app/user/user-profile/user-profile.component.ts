@@ -11,7 +11,7 @@ import { IAppState, IUser, store, UserActions } from '../../store';
 export class UserProfileComponent implements OnInit {
   message: string;
   user: IUser = {
-    id: '',
+    _id: '',
     firstName: '',
     lastName: '',
     login: '',

@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IPost } from '../../store';
+import { IPost, PostActions } from '../../store';
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs/Observable';
+import { PostService } from '../../services';
 
 @Component({
   selector: 'app-post-content',
@@ -8,6 +11,8 @@ import { IPost } from '../../store';
 })
 export class PostContentComponent implements OnInit {
   @Input('post') post: IPost;
+
+  @select(s => s.posts.recentPosts.comments) comments$: Observable<any[]>;
 
   get fullName() {
     return this.post.username;
@@ -21,8 +26,25 @@ export class PostContentComponent implements OnInit {
     return this.post.time;
   }
 
-  constructor() { }
+  get postId() {
+    return this.post._id;
+  }
+
+  constructor(private postService: PostService, private postActions: PostActions) { }
 
   ngOnInit() {
+    this.postService.getPostComments(this.post._id).subscribe(
+      data => {
+        try {
+          console.dir(data.json());
+          this.postActions.postCommentsAction(data.json());
+        } catch (err) {
+          // no data
+        }
+      },
+      err => {
+        Observable.throw(err);
+      }
+    );
   }
 }

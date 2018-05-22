@@ -13,7 +13,7 @@ export class PrivateChatComponent implements OnInit {
   enteredMessage: string;
   constructor(private socketService: SocketService, private stateService: StateService) { }
   ngOnInit() {
-    this.socketService.initSocket(this.stateService.currentUser.id);
+    this.socketService.initSocket(this.stateService.currentUser._id);
     this.socketService.receiveMessages()
       .subscribe(message =>  this.messages.push(message));
   }

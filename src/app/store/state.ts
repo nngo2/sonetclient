@@ -7,7 +7,7 @@ export interface IAppState {
 }
 
 export const emptyUser: IUser = {
-    id: '',
+    _id: '',
     firstName: '',
     lastName: '',
     login: '',

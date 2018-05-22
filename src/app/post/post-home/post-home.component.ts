@@ -17,8 +17,12 @@ export class PostHomeComponent implements OnInit {
   ngOnInit() {
     this.postService.getRecentPosts(0).subscribe(
       data => {
-        console.dir(data.json());
-        this.postActions.recentPostsAction(data.json());
+        try {
+          console.dir(data.json());
+          this.postActions.recentPostsAction(data.json());
+        } catch (error) {
+          // no data ignore err
+        }
       },
       err => {
         Observable.throw(err);
