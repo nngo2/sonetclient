@@ -4,6 +4,7 @@ import { ADD_USER, SET_USER, RESET_USER, LOG_IN } from './userActions';
 function login(state, action): IAppState {
   return Object.assign({}, state,
     {
+      ...state,
       login: action.data
     });
 }
@@ -11,6 +12,7 @@ function login(state, action): IAppState {
 function addUser(state, action): IAppState {
   return Object.assign({}, state,
     {
+      ...state,
       user: action.data
     });
 }
@@ -18,6 +20,7 @@ function addUser(state, action): IAppState {
 function setUser(state, action): IAppState {
   return Object.assign({}, state,
     {
+      ...state,
       user: {
         id: action.data._id,
         firstName: action.data.firstName,
@@ -32,6 +35,7 @@ function setUser(state, action): IAppState {
 function resetUser(state, action): IAppState {
   return Object.assign({}, state,
     {
+      ...state,
       user: {
         id: '',
         firstName: '',

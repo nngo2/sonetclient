@@ -30,6 +30,7 @@ export class CreatePostComponent implements OnInit {
       this.postService.createContentPost(post).subscribe(
         data => {
           console.dir(data);
+          this.content = '';
         },
         err => {
           Observable.throw(err);
