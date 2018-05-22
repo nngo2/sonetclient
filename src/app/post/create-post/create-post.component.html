@@ -15,10 +15,10 @@
         <input type="file" name="file" (change)="handleFileInput($event.target.files)" class="form-control" 
           placeholder="Load image" aria-label="Load image" aria-describedby="basic-addon2" required>
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="submit" [disabled]="f2.invalid">Upload Image</button>
+          <button class="btn btn-outline-primary" type="submit" [disabled]="f2.form.invalid">Upload Image</button>
         </div>
       </div>
     </form>
-    <img *ngIf="uploadedFile" src="{{uploadedFile}}" class="img-fluid" alt="Uploaded image">
+    <img *ngIf="uploadedFile" src="{{uploadedFile}}" class="img-fluid mx-auto d-block" alt="Uploaded image">
   </div>
 </div>

@@ -6,8 +6,6 @@
     <p class="card-text">{{postContent}}</p>
     <app-add-comment [postId]="postId"></app-add-comment>
     <app-comment-list [comments]="comments"></app-comment-list>
-    <div class="wrapper">
-        <img *ngIf="postImage" src="{{postImage}}" class="img-fluid" alt="Uploaded image">
-    </div>
+    <img *ngIf="postImage" src="{{postImage}}" alt="Uploaded image" class="img-responsive mx-auto d-block" />
   </div>
 </div>
