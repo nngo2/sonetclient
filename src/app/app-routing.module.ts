@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'home', component: PostHomeComponent, canActivate: [AuthGuard] },
   { path: 'register', component: UserDetailComponent },
   { path: 'login', component: LoginComponent },
-  {path: 'chat', component: PrivateChatComponent},
+  {path: 'chat', component: PrivateChatComponent, canActivate: [AuthGuard]},
   { path: '**', component: LoginComponent, pathMatch: 'full' }
 ];
 

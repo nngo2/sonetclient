@@ -7,7 +7,9 @@ export class SocketService {
   private BASE_URL = 'http://localhost:3000/';
   private socket: SocketIOClient.Socket;
   constructor() {
-    this.socket = io(this.BASE_URL);
+  }
+  initSocket(userId) {
+    this.socket = io(this.BASE_URL , { query: `userId=${userId}` });
   }
 
   sendMessage(message: string): void {
