@@ -1,4 +1,5 @@
 import { IUser } from './user';
+import { IPost } from './post';
 
 export interface IAppState {
     user: IUser;
@@ -17,4 +18,12 @@ export const emptyUser: IUser = {
 export const initialState: IAppState = {
     user: emptyUser,
     login: false
+};
+
+export interface IPostAppState {
+    recentPosts: IPost[];
+}
+
+export const initialPostState: IPostAppState = {
+    recentPosts: []
 };

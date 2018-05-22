@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from './state';
+
 export const LOG_IN = 'LOG_IN';
 export const ADD_USER = 'ADD_USER';
 export const SET_USER = 'SET_USER';

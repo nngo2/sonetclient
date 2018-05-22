@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostHomeComponent } from './post-home/post-home.component';
 import { PostContentComponent } from './post-content/post-content.component';
+import { PostListComponent } from './post-list/post-list.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { PostContentComponent } from './post-content/post-content.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [CreatePostComponent, PostHomeComponent, PostContentComponent]
+  declarations: [CreatePostComponent, PostHomeComponent, PostContentComponent, PostListComponent]
 })
 export class PostModule { }

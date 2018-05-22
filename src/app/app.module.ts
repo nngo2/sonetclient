@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth.module';
 import { NgReduxModule, NgRedux } from 'ng2-redux';
 import { UserService, AuthService, AuthGuard, JwtInterceptor, StateService, PostService} from './services/index';
-import { UserActions } from './store/index';
+import { UserActions, PostActions } from './store/index';
 import { store, IAppState } from './store/index';
 import { UserModule } from './user/user.module';
 import { AppComponent } from './app.component';
@@ -41,12 +41,13 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
     UserService,
     UserActions,
     StateService,
-    PostService
+    PostService,
+    PostActions
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
+  constructor(ngRedux: NgRedux<any>) {
     ngRedux.provideStore(store);
   }
 }
