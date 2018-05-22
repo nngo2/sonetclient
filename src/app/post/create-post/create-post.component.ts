@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IPost, IUser, PostActions } from '../../store';
-import { AuthService, PostService } from '../../services';
+import { AuthService, PostService, FileUploadService } from '../../services';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
@@ -10,11 +10,16 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class CreatePostComponent implements OnInit {
   content: string;
+  fileToUpload: File = null;
+  uploadedFile = '';
 
-  constructor(private authService: AuthService, private postService: PostService, private postActions: PostActions) { }
+  constructor(private authService: AuthService, private postService: PostService,
+    private postActions: PostActions, private fileUploadService: FileUploadService) { }
 
   ngOnInit() {
     this.content = '';
+    this.uploadedFile = '';
+    this.fileToUpload = null;
   }
 
   send(f) {
@@ -22,15 +27,18 @@ export class CreatePostComponent implements OnInit {
     const post: any = {
       username: user.login,
       time: new Date(),
-      content: this.content
+      content: this.content,
+      image: this.uploadedFile
     };
 
     if (f.valid) {
       console.dir(f.value);
       this.postService.createContentPost(post).subscribe(
         data => {
-          console.dir(data.json());
+          // console.dir(data.json());
           this.content = '';
+          this.uploadedFile = '';
+          this.fileToUpload = null;
           this.refreshData();
         },
         err => {
@@ -43,12 +51,26 @@ export class CreatePostComponent implements OnInit {
   refreshData() {
     this.postService.getRecentPosts(0).subscribe(
       data => {
-        console.dir(data.json());
+        // console.dir(data.json());
         this.postActions.recentPostsAction(data.json());
       },
       err => {
         Observable.throw(err);
       }
     );
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
+  uploadFile() {
+    this.fileUploadService.postFile(this.fileToUpload).subscribe(
+      data => {
+        console.log(data);
+        this.uploadedFile = data['path'];
+      }, error => {
+        console.log(error);
+      });
   }
 }

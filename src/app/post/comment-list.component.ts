@@ -16,7 +16,7 @@ export class CommentListComponent implements OnInit {
 
   ngOnInit() {
     if (this.comments) {
-      console.dir(this.comments);
+      // console.dir(this.comments);
     }
   }
 

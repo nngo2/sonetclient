@@ -7,7 +7,7 @@ import { PostService, StateService } from '../../services';
 @Component({
   selector: 'app-post-content',
   templateUrl: './post-content.component.html',
-  styleUrls: ['./post-content.component.css']
+  styleUrls: ['./post-content.component.css', '../../app.component.css']
 })
 export class PostContentComponent implements OnInit, OnDestroy {
   @Input('post') post: IPost;
@@ -28,6 +28,10 @@ export class PostContentComponent implements OnInit, OnDestroy {
 
   get postId() {
     return this.post._id;
+  }
+
+  get postImage() {
+    return this.post.image;
   }
 
   constructor(private postService: PostService, private postActions: PostActions, private stateService: StateService) { }

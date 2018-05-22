@@ -32,10 +32,10 @@ export class UserProfileComponent implements OnInit {
 
   onSubmit(f) {
     if (f.valid) {
-      console.dir(f.value);
+      // console.dir(f.value);
       this.userService.updateUser(f.value).subscribe(
         data => {
-          console.dir(data);
+          // console.dir(data);
           this.message = 'Profile has been updated';
           this.userActions.setUserAction(data.json());
         },

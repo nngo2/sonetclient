@@ -19,6 +19,6 @@ export class CommentContentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.dir(this.comment);
+    // console.dir(this.comment);
   }
 }

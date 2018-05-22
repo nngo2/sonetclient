@@ -18,7 +18,7 @@ export class PostHomeComponent implements OnInit {
     this.postService.getRecentPosts(0).subscribe(
       data => {
         try {
-          console.dir(data.json());
+          // console.dir(data.json());
           this.postActions.recentPostsAction(data.json());
         } catch (error) {
           // no data ignore err

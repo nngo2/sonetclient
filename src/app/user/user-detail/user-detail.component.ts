@@ -38,11 +38,11 @@ export class UserDetailComponent implements OnInit {
 
   onSubmit() {
     if (this.userForm.valid) {
-      console.dir(this.userForm.value);
+      // console.dir(this.userForm.value);
       this.message = '';
       this._userService.registerUser(this.userForm.value).subscribe(
         data => {
-          console.dir(data);
+          // console.dir(data);
           this.router.navigate(['/login']);
         },
         err => {

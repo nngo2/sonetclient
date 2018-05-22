@@ -50,7 +50,7 @@ export class AddCommentComponent implements OnInit {
       this.postService.createPostComment(this.postId, post).subscribe(
         data => {
           try {
-            console.dir(data.json());
+            // console.dir(data.json());
             this.content = '';
             this.refreshData();
           } catch (error) {
@@ -69,7 +69,7 @@ export class AddCommentComponent implements OnInit {
       data => {
         try {
           if (data.json()) {
-            console.dir(data.json());
+            // console.dir(data.json());
             // this.postActions.postCommentsAction(data.json());
             this.stateService.raiseOnCommentsChanged(data.json());
           }

@@ -4,4 +4,5 @@ export * from './user.service';
 export * from './jwt.interceptor';
 export * from './state.service';
 export * from './post.service';
+export * from './file-upload.service';
 
