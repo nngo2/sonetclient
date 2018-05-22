@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IPost, IUser } from '../../store';
+import { IPost, IUser, PostActions } from '../../store';
 import { AuthService, PostService } from '../../services';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class CreatePostComponent implements OnInit {
   content: string;
 
-  constructor(private authService: AuthService, private postService: PostService) { }
+  constructor(private authService: AuthService, private postService: PostService, private postActions: PostActions) { }
 
   ngOnInit() {
     this.content = '';
@@ -29,13 +29,26 @@ export class CreatePostComponent implements OnInit {
       console.dir(f.value);
       this.postService.createContentPost(post).subscribe(
         data => {
-          console.dir(data);
+          console.dir(data.json());
           this.content = '';
+          this.refreshData();
         },
         err => {
           Observable.throw(err);
         }
       );
     }
+  }
+
+  refreshData() {
+    this.postService.getRecentPosts(0).subscribe(
+      data => {
+        console.dir(data.json());
+        this.postActions.recentPostsAction(data.json());
+      },
+      err => {
+        Observable.throw(err);
+      }
+    );
   }
 }
