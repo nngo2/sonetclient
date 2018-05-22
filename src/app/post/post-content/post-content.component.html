@@ -1,10 +1,10 @@
 <div class="card">
   <div class="card-header">
-    {{fullName}} | {{postTime}}
+    {{fullName}} | {{postTime | date:'yyyy-MM-dd HH:MM'}}
   </div>
   <div class="card-body">
     <p class="card-text">{{postContent}}</p>
     <app-add-comment [postId]="postId"></app-add-comment>
-    <app-comment-list [comments]="(comments$ | async)"></app-comment-list>
+    <app-comment-list [comments]="comments"></app-comment-list>
   </div>
 </div>

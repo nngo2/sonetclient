@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PostActions, IUser } from '../store';
-import { AuthService, PostService } from '../services';
+import { AuthService, PostService, StateService } from '../services';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
@@ -30,7 +30,8 @@ export class AddCommentComponent implements OnInit {
   @Input() postId: string;
   content: string;
 
-  constructor(private authService: AuthService, private postService: PostService, private postActions: PostActions) { }
+  constructor(private authService: AuthService, private postService: PostService,
+    private postActions: PostActions, private stateService: StateService) { }
 
   ngOnInit() {
     this.content = '';
@@ -67,8 +68,11 @@ export class AddCommentComponent implements OnInit {
     this.postService.getPostComments(this.postId).subscribe(
       data => {
         try {
-          console.dir(data.json());
-          this.postActions.postCommentsAction(data.json());
+          if (data.json()) {
+            console.dir(data.json());
+            // this.postActions.postCommentsAction(data.json());
+            this.stateService.raiseOnCommentsChanged(data.json());
+          }
         } catch (error) {
           // no data ignore
         }
