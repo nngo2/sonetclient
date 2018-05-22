@@ -1,0 +1,9 @@
+<ul class="list-group">
+  <li class="list-group-item"
+      *ngFor="let user of onlineUsers"
+      [class.active]="isUserSelected(user._id)"
+      (click)="selectUser(user)" >
+    {{ user.firstName + ' ' + user.lastName}}
+    <span class="online"> </span>
+  </li>
+</ul>

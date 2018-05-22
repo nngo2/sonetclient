@@ -41,4 +41,8 @@ export class UserService {
     return this.httpClient.put(`${apiRoot}/api/users`, JSON.stringify(user));
   }
 
+  findOnlineUsers() {
+    return this.httpClient.get(`${apiRoot}/api/users/online`);
+  }
+
 }

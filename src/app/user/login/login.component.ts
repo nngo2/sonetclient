@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService, StateService } from '../../services/index';
 import { UserActions } from '../../store/index';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private stateService: StateService,
-    private userActions: UserActions
+    private userActions: UserActions,
+    private socketService: SocketService
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
           this.loading = false;
           this.userActions.loginUserAction(true);
           this.userActions.setUserAction(data.user);
+          this.socketService.initSocket(data.user._id);
           this.router.navigate([this.returnUrl]);
         },
         error => {

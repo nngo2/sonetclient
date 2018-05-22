@@ -13,11 +13,15 @@ import { UserModule } from './user/user.module';
 import { AppComponent } from './app.component';
 import { PostModule } from './post/post.module';
 import { PrivateChatComponent } from './chat/private-chat/private-chat.component';
+import { ChatAppComponent } from './chat/chat-app/chat-app.component';
+import { ChatListComponent } from './chat/chat-list/chat-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PrivateChatComponent
+    PrivateChatComponent,
+    ChatAppComponent,
+    ChatListComponent
   ],
   imports: [
     BrowserModule,
