@@ -18,14 +18,10 @@ export class PrivateChatComponent implements OnInit {
 
   constructor(private socketService: SocketService) { }
   ngOnInit() {
-<<<<<<< HEAD
-    this.socketService.initSocket(this.stateService.currentUser._id);
-=======
   }
   startConversation(toUser) {
     this.toUser = toUser;
     this.loadConversation(this.toUser);
->>>>>>> 1f7eb261c593939a626554ea2d01039f3982aa95
     this.socketService.receiveMessages()
       .subscribe(message =>  {
         if (message.fromUserId/* && message.fromUserId === this.toUser._id*/) {
