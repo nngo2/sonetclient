@@ -1,8 +1,10 @@
-<ul class="list-group">
-  <li class="list-group-item"
-      *ngFor="let friend of friends">
-    {{ friend.firstName + ' ' + friend.lastName}}
-    <button class="btn btn-primary"> Add friend</button>
-  </li>
-</ul>
-
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="column" *ngFor="let friend of friends">
+        <span> {{ friend.firstName + ' ' + friend.lastName}}</span>
+        <button class="btn btn-primary view-profile"> Profile</button>
+      </div>
+    </div>
+  </div>
+</div>
