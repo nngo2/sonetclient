@@ -11,7 +11,7 @@ import { PostService, StateService } from '../../services';
 })
 export class PostContentComponent implements OnInit, OnDestroy {
   @Input('post') post: IPost;
-  // @select(s => s.posts.recentPosts.comments) comments$: Observable<any[]>;
+  // @select(['posts', 'recentPosts', 'comments') comments$: Observable<any[]>;
   comments: any[];
 
   get fullName() {

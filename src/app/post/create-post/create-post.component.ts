@@ -42,7 +42,8 @@ export class CreatePostComponent implements OnInit {
           this.refreshData();
         },
         err => {
-          Observable.throw(err);
+          // Observable.throw(err);
+          console.log(err);
         }
       );
     }
@@ -55,7 +56,8 @@ export class CreatePostComponent implements OnInit {
         this.postActions.recentPostsAction(data.json());
       },
       err => {
-        Observable.throw(err);
+        // Observable.throw(err);
+        console.log(err);
       }
     );
   }
