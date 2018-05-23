@@ -7,6 +7,9 @@ import { AuthGuard } from './services/index';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { PostHomeComponent } from './post/post-home/post-home.component';
 import {ChatAppComponent} from './chat/chat-app/chat-app.component';
+import {FriendsHomeComponent} from "./friend/friends-home/friends-home.component";
+import {ListFriendsComponent} from "./friend/list-friends/list-friends.component";
+import {AddFriendsComponent} from "./friend/add-friends/add-friends.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,6 +18,11 @@ const routes: Routes = [
   { path: 'register', component: UserDetailComponent },
   { path: 'login', component: LoginComponent },
   {path: 'chat', component: ChatAppComponent, canActivate: [AuthGuard]},
+  {path: 'friends', component: FriendsHomeComponent, canActivate: [AuthGuard],
+  children: [
+    {path: 'listFriends', component: ListFriendsComponent},
+    {path: 'addFriends', component: AddFriendsComponent}
+  ]},
   { path: '**', component: LoginComponent, pathMatch: 'full' }
 ];
 

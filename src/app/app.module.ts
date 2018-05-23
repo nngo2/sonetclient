@@ -15,13 +15,20 @@ import { PostModule } from './post/post.module';
 import { PrivateChatComponent } from './chat/private-chat/private-chat.component';
 import { ChatAppComponent } from './chat/chat-app/chat-app.component';
 import { ChatListComponent } from './chat/chat-list/chat-list.component';
+import { FriendsHomeComponent } from './friend/friends-home/friends-home.component';
+import { ListFriendsComponent } from './friend/list-friends/list-friends.component';
+import { AddFriendsComponent } from './friend/add-friends/add-friends.component';
+import {ConnectionsService} from './services/connections.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     PrivateChatComponent,
     ChatAppComponent,
-    ChatListComponent
+    ChatListComponent,
+    FriendsHomeComponent,
+    ListFriendsComponent,
+    AddFriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,8 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
     StateService,
     PostService,
     PostActions,
-    FileUploadService
+    FileUploadService,
+    ConnectionsService
   ],
   bootstrap: [AppComponent]
 })
