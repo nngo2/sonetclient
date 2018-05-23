@@ -1,9 +1,9 @@
 <ul class="list-group">
   <li class="list-group-item"
-      *ngFor="let user of onlineUsers"
+      *ngFor="let user of friendList"
       [class.active]="isUserSelected(user._id)"
       (click)="selectUser(user)" >
     {{ user.firstName + ' ' + user.lastName}}
-    <span class="online"> </span>
+    <span [ngClass]="user?.status?.isOnline? 'online' : 'offline'"> </span>
   </li>
 </ul>

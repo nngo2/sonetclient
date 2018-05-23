@@ -2,7 +2,7 @@
   <div class="panel-body">
     <form class="form-inline" #f = "ngForm" (ngSubmit)="searchForFriends()">
       <div class="form-group">
-        <input  type="text" class="form-control" [(ngModel)] ="searchStr" placeholder="input for searching"/>
+        <input  type="text" class="form-control" name="searchString" [(ngModel)] ="searchStr" placeholder="input for searching"/>
         <button type="submit" class="btn btn-primary">Search</button>
       </div>
     </form>
@@ -10,7 +10,10 @@
       <div class="row">
         <div class="column" *ngFor="let person of searchResult">
           <span>{{ person.firstName + ' ' + person.lastName}}</span>
-          <button class="btn btn-primary add-friend" (click)="addFriend(person._id)"> Add friend</button>
+          <button  [disabled]="isFriend(person._id)" class="btn btn-primary add-friend" (click)="addFriend(person)">
+            <span *ngIf="!isFriend(person._id)"> Add friend</span>
+            <span *ngIf="isFriend(person._id)"> Friend</span>
+          </button>
         </div>
       </div>
     </div>

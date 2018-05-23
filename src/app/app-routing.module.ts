@@ -20,8 +20,9 @@ const routes: Routes = [
   {path: 'chat', component: ChatAppComponent, canActivate: [AuthGuard]},
   {path: 'friends', component: FriendsHomeComponent, canActivate: [AuthGuard],
   children: [
-    {path: 'listFriends', component: ListFriendsComponent},
-    {path: 'addFriends', component: AddFriendsComponent}
+    {path: '', redirectTo: 'listFriends', pathMatch: 'full'},
+    {path: 'addFriends', component: AddFriendsComponent},
+    {path: 'listFriends', component: ListFriendsComponent}
   ]},
   { path: '**', component: LoginComponent, pathMatch: 'full' }
 ];

@@ -32,6 +32,11 @@ export class SocketService {
   }
 
   logoutSocket(userId) {
-    this.socket.emit('logout', {userId: userId});
+    if (this.socket) {
+      this.socket.emit('logout', {userId: userId});
+    }
+  }
+  disconnect() {
+    this.socket.disconnect();
   }
 }
