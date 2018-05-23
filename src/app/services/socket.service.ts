@@ -14,7 +14,9 @@ export class SocketService {
     this.currentUserId = userId;
     this.socket = io(this.BASE_URL , { query: `userId=${userId}` });
   }
-
+  isSocketAvailable() {
+    return (true && this.socket);
+  }
   sendMessage(message: Message): void {
     message.fromUserId = this.currentUserId;
     this.socket.emit('add-message', message);

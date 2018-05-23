@@ -33,7 +33,7 @@ export class PrivateChatComponent implements OnInit {
     this.loadConversation(this.toUser);
   }
   loadConversation(toUser) {
-    this.messages = [];
+    this.messages = this.messages.filter(m => (m.fromUserId === toUser._id));
   }
   sendMessage() {
     const message = this.createMessage(this.enteredMessage);

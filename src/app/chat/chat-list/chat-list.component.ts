@@ -27,7 +27,7 @@ export class ChatListComponent implements OnInit, OnDestroy {
   handleIncomingMessages() {
     this.socketService.receiveMessages()
       .subscribe(message =>  {
-        if (message.fromUserId && this.selectedUser && this.selectedUser._id !== message.fromUserId) {
+        if (message.fromUserId && (this.selectedUser && this.selectedUser._id !== message.fromUserId) || (!this.selectedUser)) {
           for (const u of this.friendList) {
             if (u._id === message.fromUserId) {
               this.selectUser(u);

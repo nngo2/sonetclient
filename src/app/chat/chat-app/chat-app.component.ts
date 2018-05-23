@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConversationUser} from '../../interface/ConversationUser';
 import {PrivateChatComponent} from '../private-chat/private-chat.component';
+import {AuthService} from '../../services/auth.service';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
   selector: 'app-chat-app',
@@ -9,9 +11,17 @@ import {PrivateChatComponent} from '../private-chat/private-chat.component';
 })
 export class ChatAppComponent implements OnInit {
   @ViewChild(PrivateChatComponent) privateChatComponent: PrivateChatComponent;
-  constructor() { }
+  constructor(private socketService: SocketService,
+              private authService: AuthService) { }
 
   ngOnInit() {
+    this.initSocket();
+  }
+  initSocket() {
+    const currentUser = this.authService.getCurrentUser();
+    if (!this.socketService.isSocketAvailable() && currentUser && currentUser._id) {
+      this.socketService.initSocket(currentUser._id);
+    }
   }
 
   selectUser(user: ConversationUser) {
