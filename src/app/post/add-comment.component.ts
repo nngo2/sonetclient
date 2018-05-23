@@ -46,7 +46,7 @@ export class AddCommentComponent implements OnInit {
     };
 
     if (f.valid) {
-      console.dir(f.value);
+      // console.dir(f.value);
       this.postService.createPostComment(this.postId, post).subscribe(
         data => {
           try {

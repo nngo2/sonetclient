@@ -25,5 +25,8 @@ export class PostService {
     return this.httpClient.post(`${apiRoot}/api/posts/${postId}/comments`, JSON.stringify(comment));
   }
 
+  searchPosts(page, keywords) {
+    return this.httpClient.post(`${apiRoot}/api/posts/search/${page}`, JSON.stringify(keywords));
+  }
 
 }

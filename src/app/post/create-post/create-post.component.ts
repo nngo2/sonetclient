@@ -32,7 +32,7 @@ export class CreatePostComponent implements OnInit {
     };
 
     if (f.valid) {
-      console.dir(f.value);
+      // console.dir(f.value);
       this.postService.createContentPost(post).subscribe(
         data => {
           // console.dir(data.json());
