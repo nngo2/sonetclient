@@ -17,12 +17,12 @@
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="profile">My Profile</a>
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']">
+     <!-- <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="chat">Chat</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="friends">Friends</a>
-      </li>
+      </li>-->
       <li class="nav-item">
         <a class="nav-link" *ngIf="(isLoggedIn$ | async)" routerLink="login">Logout</a>
         <a class="nav-link" *ngIf="!(isLoggedIn$ | async)" routerLink="login">Login</a>

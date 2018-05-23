@@ -19,16 +19,16 @@ export class ListFriendsComponent implements OnInit {
   }
   loadFriendList() {
    this.currentUser = this.authService.getCurrentUser();
-    if (this.currentUser && this.currentUser.id) {
-      this.connectionService.getFriendList(this.currentUser.id)
+    if (this.currentUser && this.currentUser._id) {
+      this.connectionService.getFriendList(this.currentUser._id)
         .subscribe((res) => {
             this.friends = res.json();
         });
     }
   }
   addFriend(friend) {
-    if (this.currentUser && this.currentUser.id) {
-      this.connectionService.addFriend(this.currentUser.id, friend._id)
+    if (this.currentUser && this.currentUser._id) {
+      this.connectionService.addFriend(this.currentUser._id, friend._id)
         .subscribe((data) => {
           this.friends.push(friend);
         });
