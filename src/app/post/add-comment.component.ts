@@ -8,15 +8,17 @@ import { Observable } from 'rxjs/Observable';
   template: `
   <div class="card text-dark bg-light mb-3">
     <div class="card-body">
-      <form class="container" (ngSubmit)="f.form.valid && send(f)" #f="ngForm" novalidate>
+      <form (ngSubmit)="f.form.valid && send(f)" #f="ngForm" novalidate>
         <div class="form-row">
           <div class="input-group">
-            <div class="input-group-prepend">
+            <div class="input-group-addon">
               <span class="input-group-text">Comment: </span>
             </div>
             <textarea class="form-control" name="content" [(ngModel)]="content" #contentRef="ngModel" required></textarea>
-            <div class="input-group-append">
-              <button [disabled]="f.form.invalid" class="btn btn-primary">Send</button>
+            <div class="input-group-addon">
+              <span class="input-group-btn">
+                <button [disabled]="f.form.invalid" class="btn btn-primary">Send</button>
+              </span>
             </div>
           </div>
         </div>

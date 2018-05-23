@@ -1,47 +1,52 @@
-<form class="container" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <p *ngIf="message">{{message}}</p>
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input class="form-control" name="firstName" type="text" formControlName="firstName">
-    <div class="alert alert-danger" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
-      <p *ngIf="firstName.errors.required">First name is required</p>
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <p *ngIf="message">{{message}}</p>
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input class="form-control" name="firstName" type="text" formControlName="firstName">
+              <div class="alert alert-danger" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                <p *ngIf="firstName.errors.required">First name is required</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input class="form-control" name="lastName" type="text" formControlName="lastName">
+              <div class="alert alert-danger" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+                <p *ngIf="lastName.errors.required">Last name is required</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input class="form-control" name="email" type="email" formControlName="email"> 
+              <div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)">
+                <p *ngIf="email.errors.required">Email is required</p>
+                <p *ngIf="email.errors.email">Email is invalid</p>
+                <p *ngIf="email.errors.uniqueEmail">Email has been already used</p>          
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="login">User name</label>
+              <input class="form-control" name="login" type="text" formControlName="login">
+              <div class="alert alert-danger" *ngIf="login.errors && (login.dirty || login.touched)">
+                <p *ngIf="login.errors.required">User name is required</p>
+                <p *ngIf="login.errors.maxlength">User name must be between 5 and 20 characters</p>
+                <p *ngIf="login.errors.minlength">User name must be between 5 and 20 characters</p>      
+                <p *ngIf="login.errors.uniqueLogin">User name has been already used</p>           
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input class="form-control" name="password" type="password" formControlName="password">
+              <div class="alert alert-danger" *ngIf="password.errors && (password.dirty || password.touched)">
+                <p *ngIf="password.errors.required">Password is required</p>
+                <p *ngIf="password.errors.maxlength">Password must be between 8 and 20 characters</p>
+                <p *ngIf="password.errors.minlength">Password must be between 8 and 20 characters</p>              
+              </div>
+            </div>
+            <input type="hidden" name="id" formControlName="id">
+            <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
+          </form>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="lastName">Last Name</label>
-    <input class="form-control" name="lastName" type="text" formControlName="lastName">
-    <div class="alert alert-danger" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
-      <p *ngIf="lastName.errors.required">Last name is required</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control" name="email" type="email" formControlName="email"> 
-    <div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)">
-      <p *ngIf="email.errors.required">Email is required</p>
-      <p *ngIf="email.errors.email">Email is invalid</p>
-      <p *ngIf="email.errors.uniqueEmail">Email has been already used</p>          
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="login">User name</label>
-    <input class="form-control" name="login" type="text" formControlName="login">
-    <div class="alert alert-danger" *ngIf="login.errors && (login.dirty || login.touched)">
-      <p *ngIf="login.errors.required">User name is required</p>
-      <p *ngIf="login.errors.maxlength">User name must be between 5 and 20 characters</p>
-      <p *ngIf="login.errors.minlength">User name must be between 5 and 20 characters</p>      
-      <p *ngIf="login.errors.uniqueLogin">User name has been already used</p>           
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input class="form-control" name="password" type="password" formControlName="password">
-    <div class="alert alert-danger" *ngIf="password.errors && (password.dirty || password.touched)">
-      <p *ngIf="password.errors.required">Password is required</p>
-      <p *ngIf="password.errors.maxlength">Password must be between 8 and 20 characters</p>
-      <p *ngIf="password.errors.minlength">Password must be between 8 and 20 characters</p>              
-    </div>
-  </div>
-  <input type="hidden" name="id" formControlName="id">
-  <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
-</form>
+</div>
+
