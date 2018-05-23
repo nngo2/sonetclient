@@ -17,4 +17,13 @@ export class PostService {
     return this.httpClient.get(`${apiRoot}/api/posts/recent/${page}`);
   }
 
+  getPostComments(postId) {
+    return this.httpClient.get(`${apiRoot}/api/posts/${postId}/comments`);
+  }
+
+  createPostComment(postId, comment) {
+    return this.httpClient.post(`${apiRoot}/api/posts/${postId}/comments`, JSON.stringify(comment));
+  }
+
+
 }

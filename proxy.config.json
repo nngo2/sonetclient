@@ -1,0 +1,14 @@
+{
+  "/images":{
+    "target":"http://localhost:8080/images",
+    "secure":false,
+    "logLevel":"debug",
+    "pathRewrite": {"^/images" : ""}
+  },
+  "/upload":{
+    "target":"http://localhost:8080/upload",
+    "secure":false,
+    "logLevel":"debug",
+    "pathRewrite": {"^/upload" : ""}    
+  }  
+}

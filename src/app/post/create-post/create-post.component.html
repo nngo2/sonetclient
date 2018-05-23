@@ -10,5 +10,15 @@
         <button [disabled]="f.form.invalid" class="btn btn-primary">Send</button>
       </div>
     </form>
+    <form class="container" #f2="ngForm" (ngSubmit)="uploadFile()" enctype="multipart/form-data" novalidate>
+      <div class="input-group mb-3">
+        <input type="file" name="file" (change)="handleFileInput($event.target.files)" class="form-control" 
+          placeholder="Load image" aria-label="Load image" aria-describedby="basic-addon2" required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="submit" [disabled]="f2.form.invalid">Upload Image</button>
+        </div>
+      </div>
+    </form>
+    <img *ngIf="uploadedFile" src="{{uploadedFile}}" class="img-fluid mx-auto d-block" alt="Uploaded image">
   </div>
 </div>

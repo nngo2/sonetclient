@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { NgRedux, select } from 'ng2-redux';
-import { IAppState } from './store';
 import {SocketService} from './services/socket.service';
 
 @Component({
@@ -12,8 +11,8 @@ import {SocketService} from './services/socket.service';
 })
 export class AppComponent {
   title = 'SoNet';
-  @select('login') isLoggedIn$: Observable<boolean>;
+  @select(s => s.user.login) isLoggedIn$: Observable<boolean>;
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor(private ngRedux: NgRedux<any>) { }
 
 }
