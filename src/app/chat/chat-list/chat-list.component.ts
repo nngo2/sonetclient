@@ -1,7 +1,8 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {UserService} from '../../services/user.service';
-import {StateService} from '../../services';
+import {AuthService} from '../../services';
 import {ConversationUser} from '../../interface/ConversationUser';
+import {ConnectionsService} from '../../services/connections.service';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -10,26 +11,48 @@ import {ConversationUser} from '../../interface/ConversationUser';
 })
 export class ChatListComponent implements OnInit, OnDestroy {
   @Output()
-  userSelection: EventEmitter<string> = new EventEmitter<string>();
-  onlineUsers: ConversationUser[] = [];
+  userSelection: EventEmitter<ConversationUser> = new EventEmitter<ConversationUser>();
+  friendList: ConversationUser[] = [];
   selectedUser: ConversationUser;
   intervalId: any;
-  constructor(private stateService: StateService,
-              private userService: UserService) {
+  constructor(private connectionService: ConnectionsService,
+              private authService: AuthService,
+              private socketService: SocketService) {
   }
   ngOnInit() {
-    this.getOnlineUsers();
-    this.intervalId = setInterval(() => {this.getOnlineUsers(); }, 5000);
+    this.handleIncomingMessages();
+    this.loadFriendList();
+    this.intervalId = setInterval(() => {this.loadFriendList(); }, 10000);
+  }
+  handleIncomingMessages() {
+    this.socketService.receiveMessages()
+      .subscribe(message =>  {
+        if (message.fromUserId && (this.selectedUser && this.selectedUser._id !== message.fromUserId) || (!this.selectedUser)) {
+          for (const u of this.friendList) {
+            if (u._id === message.fromUserId) {
+              this.selectUser(u);
+            }
+          }
+        }
+      });
   }
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
-  getOnlineUsers() {
-    this.userService.findOnlineUsers()
-      .subscribe((data) => {this.onlineUsers = data.json(); console.log(data.json()); });
+  loadFriendList() {
+    const currentUserId = this.authService.getCurrentUser()._id;
+    if (currentUserId) {
+      this.connectionService.getFriendList(currentUserId)
+        .subscribe((res) => {
+          console.log(res.json());
+          this.friendList = res.json();
+        });
+    }
   }
-  selectUser(user) {
-    this.userSelection.emit(user);
+  selectUser(user: ConversationUser) {
+    if (user.status && user.status.isOnline) {
+      this.userSelection.emit(user);
+    }
     this.selectedUser = user;
   }
   isUserSelected(id) {

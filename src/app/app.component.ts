@@ -22,10 +22,14 @@ export class AppComponent {
   }
 
   constructor(private ngRedux: NgRedux<any>, private postService: PostService, private router: Router,
-     private postActions: PostActions, private userActions: UserActions, private authService: AuthService) { }
+     private postActions: PostActions, private userActions: UserActions, private authService: AuthService,
+      private socketService: SocketService ) { }
 
   logout() {
     this.userActions.resetUserAction();
+    if (this.authService.getCurrentUser()) {
+      this.socketService.logoutSocket(this.authService.getCurrentUser()._id);
+    }
     this.authService.logout();
     this.userActions.loginUserAction(false);
     this.router.navigate(['login']);

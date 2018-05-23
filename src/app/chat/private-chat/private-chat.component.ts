@@ -18,19 +18,22 @@ export class PrivateChatComponent implements OnInit {
 
   constructor(private socketService: SocketService) { }
   ngOnInit() {
+    this.receiveMessages();
   }
-  startConversation(toUser) {
-    this.toUser = toUser;
-    this.loadConversation(this.toUser);
+  receiveMessages() {
     this.socketService.receiveMessages()
       .subscribe(message =>  {
-        if (message.fromUserId/* && message.fromUserId === this.toUser._id*/) {
+        if (message.fromUserId) {
           this.messages.push(message);
         }
       });
   }
+  startConversation(toUser) {
+    this.toUser = toUser;
+    this.loadConversation(this.toUser);
+  }
   loadConversation(toUser) {
-    this.messages = [];
+    this.messages = this.messages.filter(m => (m.fromUserId === toUser._id));
   }
   sendMessage() {
     const message = this.createMessage(this.enteredMessage);
@@ -48,6 +51,9 @@ export class PrivateChatComponent implements OnInit {
     };
   }
   isOwnMessage(msgParam: Message): boolean {
-    return msgParam.toUserId === this.toUser._id;
+    if (this.toUser) {
+      return msgParam.toUserId === this.toUser._id;
+    }
+    return false;
   }
 }
