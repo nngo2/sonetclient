@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { AuthService, StateService } from '../../services/index';
+import { AuthService } from '../../services/index';
 import { UserActions } from '../../store/index';
 import {SocketService} from '../../services/socket.service';
 
@@ -20,16 +20,12 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private stateService: StateService,
     private userActions: UserActions,
     private socketService: SocketService
   ) { }
 
   ngOnInit() {
     this.message = '';
-    this.userActions.resetUserAction();
-    this.authService.logout();
-    this.userActions.loginUserAction(false);
     // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.returnUrl = '/home';
   }

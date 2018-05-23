@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { NgRedux, select } from 'ng2-redux';
 import { SocketService } from './services/socket.service';
-import { PostService } from './services';
-import { PostActions } from './store';
+import { PostService, AuthService } from './services';
+import { PostActions, UserActions } from './store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,21 @@ import { PostActions } from './store';
 export class AppComponent {
   title = 'SoNet';
   keywords = '';
-  @select(s => s.user.login) isLoggedIn$: Observable<boolean>;
+  // @select(s => s.user.login) isLoggedIn$: Observable<boolean>;
 
-  constructor(private ngRedux: NgRedux<any>, private postService: PostService, private postActions: PostActions) { }
+  get isLoggedIn() {
+    return this.authService.isAuthenticated();
+  }
+
+  constructor(private ngRedux: NgRedux<any>, private postService: PostService, private router: Router,
+     private postActions: PostActions, private userActions: UserActions, private authService: AuthService) { }
+
+  logout() {
+    this.userActions.resetUserAction();
+    this.authService.logout();
+    this.userActions.loginUserAction(false);
+    this.router.navigate(['login']);
+  }
 
   onSubmit(f) {
     if (f.valid) {
