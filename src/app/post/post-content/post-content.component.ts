@@ -39,7 +39,12 @@ export class PostContentComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.comments = this.post.comments;
     this.stateService.onCommentsChanged.subscribe(
-      data => this.comments = data.comments
+      data => {
+        // console.log(this.post);
+        if (data._id === this.post._id) {
+          this.comments = data.comments;
+        }
+      }
     );
   }
 
