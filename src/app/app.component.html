@@ -6,10 +6,9 @@
   </button>
   <div class="row" id="navbarToggler">
     <a class="navbar-brand" routerLink="profile">SoNet</a>
-    <form class="form-inline my-2 my-lg-0" (ngSubmit)="f.valid && onSubmit(f)" #f="ngForm">
-      <input class="form-control mr-sm-2" type="search" name="keywords" placeholder="Search" aria-label="Search" 
-      [disabled]="!(isLoggedIn$ | async)" [(ngModel)]="keywords" required>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" [disabled]="!(isLoggedIn$ | async)">Search</button>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item" [routerLinkActive]="['active']">
@@ -18,12 +17,12 @@
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="profile">My Profile</a>
       </li>
-     <!-- <li class="nav-item" [routerLinkActive]="['active']">
+      <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="chat">Chat</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" routerLink="friends">Friends</a>
-      </li>-->
+      </li>
       <li class="nav-item">
         <a class="nav-link" *ngIf="(isLoggedIn$ | async)" routerLink="login">Logout</a>
         <a class="nav-link" *ngIf="!(isLoggedIn$ | async)" routerLink="login">Login</a>
