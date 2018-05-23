@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IPost, IUser, PostActions } from '../../store';
 import { AuthService, PostService, FileUploadService } from '../../services';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-create-post',

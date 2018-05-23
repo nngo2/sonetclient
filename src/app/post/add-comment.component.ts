@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PostActions, IUser } from '../store';
 import { AuthService, PostService, StateService } from '../services';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-add-comment',
