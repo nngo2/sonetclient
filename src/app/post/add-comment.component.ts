@@ -58,7 +58,8 @@ export class AddCommentComponent implements OnInit {
           }
         },
         err => {
-          Observable.throw(err);
+          // Observable.throw(err);
+          console.log(err);
         }
       );
     }
@@ -78,7 +79,8 @@ export class AddCommentComponent implements OnInit {
         }
       },
       err => {
-        Observable.throw(err);
+        // Observable.throw(err);
+        console.log(err);
       }
     );
   }

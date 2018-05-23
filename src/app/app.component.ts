@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'SoNet';
   keywords = '';
-  // @select(s => s.user.login) isLoggedIn$: Observable<boolean>;
+  // @select(['user', 'login']) isLoggedIn$: Observable<boolean>;
 
   get isLoggedIn() {
     return this.authService.isAuthenticated();
@@ -48,7 +48,8 @@ export class AppComponent {
             }
           },
           err => {
-            Observable.throw(err);
+            // Observable.throw(err);
+            console.log(err);
           }
         );
       } else {
@@ -62,7 +63,8 @@ export class AppComponent {
             }
           },
           err => {
-            Observable.throw(err);
+            // Observable.throw(err);
+            console.log(err);
           }
         );
       }

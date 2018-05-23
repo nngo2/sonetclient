@@ -47,7 +47,8 @@ export class UserDetailComponent implements OnInit {
         },
         err => {
           this.message = err;
-          Observable.throw(err);
+          // Observable.throw(err);
+          console.log(err);
         }
       );
     }
@@ -65,7 +66,8 @@ export class UserDetailComponent implements OnInit {
         },
         err => {
           this.message = err;
-          Observable.throw(err);
+          // Observable.throw(err);
+          console.log(err);
         }
       );
     });
@@ -83,7 +85,8 @@ export class UserDetailComponent implements OnInit {
         },
         err => {
           this.message = err;
-          Observable.throw(err);
+          // Observable.throw(err);
+          console.log(err);
         }
       );
     });

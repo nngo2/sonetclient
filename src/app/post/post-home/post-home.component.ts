@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IPost, PostActions, IAppState, IPostAppState } from '../../store';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs/Observable';
 import { PostService } from '../../services';
 import { select } from 'ng2-redux';
 
@@ -10,7 +10,7 @@ import { select } from 'ng2-redux';
   styleUrls: ['./post-home.component.css']
 })
 export class PostHomeComponent implements OnInit {
-  @select(s => s.posts.recentPosts) posts$: Observable<IPost[]>;
+  @select(['posts', 'recentPosts']) posts$: Observable<IPost[]>;
 
   constructor(private postService: PostService, private postActions: PostActions) { }
 
@@ -25,7 +25,8 @@ export class PostHomeComponent implements OnInit {
         }
       },
       err => {
-        Observable.throw(err);
+        // Observable.throw(err);
+        console.log(err);
       }
     );
   }
