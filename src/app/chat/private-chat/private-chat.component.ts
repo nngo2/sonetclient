@@ -51,6 +51,9 @@ export class PrivateChatComponent implements OnInit {
     };
   }
   isOwnMessage(msgParam: Message): boolean {
-    return msgParam.toUserId === this.toUser._id;
+    if (this.toUser) {
+      return msgParam.toUserId === this.toUser._id;
+    }
+    return false;
   }
 }
