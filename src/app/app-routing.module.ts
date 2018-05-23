@@ -10,11 +10,12 @@ import {ChatAppComponent} from './chat/chat-app/chat-app.component';
 import {FriendsHomeComponent} from './friend/friends-home/friends-home.component';
 import {ListFriendsComponent} from './friend/list-friends/list-friends.component';
 import {AddFriendsComponent} from './friend/add-friends/add-friends.component';
+import { PostsResolver } from './services/posts.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: PostHomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: PostHomeComponent, canActivate: [AuthGuard], resolve: {post: PostsResolver} },
   { path: 'register', component: UserDetailComponent },
   { path: 'login', component: LoginComponent },
   {path: 'chat', component: ChatAppComponent, canActivate: [AuthGuard]},

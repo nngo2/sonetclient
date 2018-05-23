@@ -6,7 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth.module';
 import { NgReduxModule, NgRedux } from 'ng2-redux';
-import { UserService, AuthService, AuthGuard, JwtInterceptor, StateService, PostService, FileUploadService} from './services/index';
+import { UserService, AuthService, AuthGuard, JwtInterceptor,
+  StateService, PostService, FileUploadService, PostsResolver} from './services/index';
 import { UserActions, PostActions } from './store/index';
 import { store, IAppState } from './store/index';
 import { UserModule } from './user/user.module';
@@ -51,7 +52,8 @@ import {ConnectionsService} from './services/connections.service';
     PostService,
     PostActions,
     FileUploadService,
-    ConnectionsService
+    ConnectionsService,
+    PostsResolver
   ],
   bootstrap: [AppComponent]
 })

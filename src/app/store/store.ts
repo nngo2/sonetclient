@@ -1,5 +1,5 @@
 import { createStore, compose, StoreEnhancer, applyMiddleware } from 'redux';
-import { IAppState } from './state';
+import { IAppState, initialState, initialPostState } from './state';
 import reducer from './reducer';
 
 const devtools: StoreEnhancer<any> =
@@ -29,5 +29,5 @@ function errorHandler(error, getState, lastAction, dispatch) {
 
 // export const store = createStore(reducer);
 // export const store = createStore<any>(reducer);
-// export const store = createStore(reducer, compose(devtools));
-export const store = createStore(reducer, applyMiddleware(middlewareFactory(errorHandler)));
+export const store = createStore(reducer, {user: initialState, posts: initialPostState}, compose(devtools));
+// export const store = createStore(reducer, applyMiddleware(middlewareFactory(errorHandler)));
