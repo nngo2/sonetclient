@@ -26,7 +26,8 @@ export class PostService {
   }
 
   searchPosts(page, keywords) {
-    return this.httpClient.post(`${apiRoot}/api/posts/search/${page}`, JSON.stringify(keywords));
+    // return this.httpClient.post(`${apiRoot}/api/posts/search/${page}`, JSON.stringify(keywords));
+    return this.httpClient.post(`${apiRoot}/api/posts/search/v2/${page}`, JSON.stringify(keywords));
   }
 
 }
