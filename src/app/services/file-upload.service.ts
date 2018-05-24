@@ -13,8 +13,12 @@ export class FileUploadService {
 
   postFile(fileToUpload: File) {
     // console.dir(fileToUpload);
-    const formData: FormData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    return this.httpClient.post(`${appRoot}/upload`, formData);
+    if (fileToUpload && fileToUpload.name) {
+      const formData: FormData = new FormData();
+      formData.append('file', fileToUpload, fileToUpload.name);
+      return this.httpClient.post(`${appRoot}/upload`, formData);
+    } else {
+      return Observable.of({path: ''});
+    }
   }
 }

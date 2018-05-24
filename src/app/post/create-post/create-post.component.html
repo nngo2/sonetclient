@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">Post</div>
   <div class="card-body">
-    <form class="container" (ngSubmit)="f.form.valid && send(f)" #f="ngForm" novalidate>
+    <form (ngSubmit)="f.form.valid && send(f)" #f="ngForm" novalidate>
       <div class="form-group">
         <label for="content">Message</label>
         <textarea class="form-control" name="content" [(ngModel)]="content" #contentRef="ngModel" required></textarea>
@@ -10,15 +10,17 @@
         <button [disabled]="f.form.invalid" class="btn btn-primary">Send</button>
       </div>
     </form>
-    <form class="container" #f2="ngForm" (ngSubmit)="uploadFile()" enctype="multipart/form-data" novalidate>
-      <div class="input-group mb-3">
-        <input type="file" name="file" (change)="handleFileInput($event.target.files)" class="form-control" 
-          placeholder="Load image" aria-label="Load image" aria-describedby="basic-addon2" required>
-        <div class="input-group-append">
+
+    <form #f2="ngForm" (ngSubmit)="uploadFile()" enctype="multipart/form-data" novalidate>
+      <div class="input-group">
+        <input type="file" name="file" (change)="handleFileInput($event.target.files)" 
+            class="form-control" placeholder="Load image" required>
+        <span class="input-group-btn">
           <button class="btn btn-outline-primary" type="submit" [disabled]="f2.form.invalid">Upload Image</button>
-        </div>
+        </span>
       </div>
     </form>
+
     <img *ngIf="uploadedFile" src="{{uploadedFile}}" class="img-fluid mx-auto d-block" alt="Uploaded image">
   </div>
 </div>

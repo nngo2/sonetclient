@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs/Observable';
 import { NgRedux, select } from 'ng2-redux';
 import { SocketService } from './services/socket.service';
 import { PostService, AuthService } from './services';

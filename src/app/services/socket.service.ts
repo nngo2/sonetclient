@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';
 import {Message} from '../interface/Message';
+import { apiRoot } from '../services/common';
 
 @Injectable()
 export class SocketService {
-  private BASE_URL = 'http://localhost:3000/';
+  // private BASE_URL = 'http://localhost:3000/';
+  private BASE_URL = apiRoot + '/';
   private socket: SocketIOClient.Socket;
   private currentUserId: string;
   constructor() {
