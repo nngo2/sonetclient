@@ -4,6 +4,8 @@ import {StateService} from '../../services';
 import {ConversationUser} from '../../interface/ConversationUser';
 import {UserService} from '../../services/user.service';
 import { Message } from '../../interface/Message';
+import {MessageService} from '../../services/message.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-private-chat',
@@ -16,7 +18,9 @@ export class PrivateChatComponent implements OnInit {
   toUser: ConversationUser;
   enteredMessage: string;
 
-  constructor(private socketService: SocketService) { }
+  constructor(private socketService: SocketService,
+              private messageService: MessageService,
+              private authService: AuthService) { }
   ngOnInit() {
     this.receiveMessages();
   }
@@ -33,12 +37,19 @@ export class PrivateChatComponent implements OnInit {
     this.loadConversation(this.toUser);
   }
   loadConversation(toUser) {
-    this.messages = this.messages.filter(m => (m.fromUserId === toUser._id));
+    const currentUserId = this.authService.getCurrentUser()._id;
+    this.messageService.getMessages(currentUserId, toUser._id)
+      .subscribe(res => {
+        this.messages = res.json();
+      });
   }
   sendMessage() {
     const message = this.createMessage(this.enteredMessage);
     this.socketService.sendMessage(message);
-    this.messages.push(message);
+    this.messageService.addMessage(message)
+      .subscribe((res) => {
+        this.messages.push(message);
+      });
     this.form.reset();
   }
 

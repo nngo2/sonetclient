@@ -19,6 +19,7 @@ import { FriendsHomeComponent } from './friend/friends-home/friends-home.compone
 import { ListFriendsComponent } from './friend/list-friends/list-friends.component';
 import { AddFriendsComponent } from './friend/add-friends/add-friends.component';
 import {ConnectionsService} from './services/connections.service';
+import {MessageService} from './services/message.service';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {ConnectionsService} from './services/connections.service';
     UserService,
     UserActions,
     StateService,
+    MessageService,
     PostService,
     PostActions,
     FileUploadService,
